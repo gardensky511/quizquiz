@@ -24,7 +24,6 @@ const QuestionsCard: React.FC<Props> = ({
       Question: {questionNumber} / {totalQuestion}
     </p>
     {/* dangerouslySetInnerHTML: DOM에서 innerHTML을 사용하기 위한 React의 대체 방법 */}
-    {/* https://ko.reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml */}
     <p dangerouslySetInnerHTML={{ __html: question }}></p>
     <div>
       {answers.map((answer) => (
