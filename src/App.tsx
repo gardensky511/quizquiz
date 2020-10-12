@@ -33,6 +33,21 @@ const App = () => {
     setLoading(false);
   };
 
+  const checkAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (!gameOver) {
+      // users answer
+      const answer = event.currentTarget.value;
+      // check answer against correct answer
+      const isCorrect = questions[number].correct_answer === answer;
+      // add score if answer is correct
+      if (isCorrect) setScore((prev) => prev + 1);
+      // save answer in the array for user answers
+      const answerObject = {
+        question: questions[number].question,
+      };
+    }
+  };
+
   const nextQuestion = () => {};
 
   // usestate에서 제네릭 사용 : 해당 상태가 어떤 타입을 가지고 있을지 설정
@@ -42,8 +57,6 @@ const App = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
-
-  console.log(fetchQuizQuestions(TOTAL_QUESTIONS, Difficulty.EASY));
 
   return (
     <div className="App">
