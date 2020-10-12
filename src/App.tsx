@@ -17,9 +17,21 @@ type AnswerObject = {
 const TOTAL_QUESTIONS = 10;
 
 const App = () => {
-  const startTrivia = async () => {};
+  const startTrivia = async () => {
+    setLoading(true);
+    setGameOver(false);
 
-  const checkAnswer = (event: React.MouseEvent<HTMLButtonElement>) => {};
+    const newQuestions = await fetchQuizQuestions(
+      TOTAL_QUESTIONS,
+      Difficulty.EASY
+    );
+
+    setQuestions(newQuestions);
+    setScore(0);
+    setUserAnswers([]);
+    setNumber(0);
+    setLoading(false);
+  };
 
   const nextQuestion = () => {};
 
