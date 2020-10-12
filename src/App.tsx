@@ -16,8 +16,9 @@ const App = () => {
 
   const nextQuestion = () => {};
 
+  // usestate에서 제네릭 사용 : 해당 상태가 어떤 타입을 가지고 있을지 설정
   const [loading, setLoading] = useState(false);
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [number, setNumber] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
   const [score, setScore] = useState(0);
@@ -28,22 +29,31 @@ const App = () => {
   return (
     <div className="App">
       <h1>REACT QUIZ</h1>
-      <button className="start" onClick={startTrivia}>
-        START
-      </button>
-      <p className="score">SCORE: </p>
-      <p>Loading Questions...</p>
-      {/* <QuestionsCard
-        questionNumber={number + 1}
-        totalQuestion={TOTAL_QUESTIONS}
-        question={questions[number].question}
-        answers={questions[number].answers}
-        userAnswer={userAnswers ? userAnswers[number] : undefined}
-        callback={checkAnswer}
-      /> */}
-      <button className="next" onClick={nextQuestion}>
-        Next Question
-      </button>
+      {(gameOver || userAnswers.length === 10) && (
+        <button className="start" onClick={startTrivia}>
+          START
+        </button>
+      )}
+      {!gameOver && <p className="score">SCORE: </p>}
+      {loading && <p>Loading Questions...</p>}
+      {!loading && !gameOver && (
+        <QuestionsCard
+          questionNumber={number + 1}
+          totalQuestion={TOTAL_QUESTIONS}
+          question={questions[number].question}
+          answers={questions[number].answers}
+          userAnswer={userAnswers ? userAnswers[number] : undefined}
+          callback={checkAnswer}
+        />
+      )}
+      {!loading &&
+        !gameOver &&
+        userAnswers.length === number + 1 &&
+        number !== TOTAL_QUESTIONS - 1 && (
+          <button className="next" onClick={nextQuestion}>
+            Next Question
+          </button>
+        )}
     </div>
   );
 };
