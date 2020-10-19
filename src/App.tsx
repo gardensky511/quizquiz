@@ -41,7 +41,12 @@ const App = () => {
       // save answer in the array for user answers
       const answerObject = {
         question: questions[number].question,
+        answer,
+        correct: isCorrect,
+        correctAnswer: questions[number].correct_answer,
       };
+
+      setUserAnswers((prev) => [...prev, answerObject]);
     }
   };
 
