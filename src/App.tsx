@@ -50,7 +50,14 @@ const App = () => {
     }
   };
 
-  const nextQuestion = () => {};
+  const nextQuestion = () => {
+    const nextQuestion = number + 1;
+    if (nextQuestion === TOTAL_QUESTIONS) {
+      setGameOver(true);
+    } else {
+      setNumber(nextQuestion);
+    }
+  };
 
   // usestate에서 제네릭 사용 : 해당 상태가 어떤 타입을 가지고 있을지 설정
   const [loading, setLoading] = useState(false);
