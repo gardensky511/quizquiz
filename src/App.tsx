@@ -5,7 +5,7 @@ import { fetchQuizQuestions } from "./API";
 import QuestionsCard from "./components/QuestionsCard";
 
 // Types
-import { QuestionState, Difficulty } from "./API";
+import { QuestionState } from "./API";
 
 type AnswerObject = {
   question: string;
@@ -21,10 +21,7 @@ const App = () => {
     setLoading(true);
     setGameOver(false);
 
-    const newQuestions = await fetchQuizQuestions(
-      TOTAL_QUESTIONS,
-      Difficulty.EASY
-    );
+    const newQuestions = await fetchQuizQuestions(TOTAL_QUESTIONS, "easy");
 
     setQuestions(newQuestions);
     setScore(0);

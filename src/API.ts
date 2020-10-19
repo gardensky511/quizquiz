@@ -11,15 +11,9 @@ export type Question = {
 
 export type QuestionState = Question & { answers: string[] };
 
-export enum Difficulty {
-  EASY = "easy",
-  MEDIUM = "medium",
-  HARD = "hard",
-}
-
 export const fetchQuizQuestions = async (
   amount: number,
-  diffculty: Difficulty
+  diffculty: "easy" | "medium" | "hard"
 ) => {
   // ENDPOINT란 API가 서버에서 리소스에 접근할 수 있도록 가능하게 하는 URL
   const endpoint = `https://opentdb.com/api.php?amount=${amount}&diffculty=${diffculty}&type=multiple`;
